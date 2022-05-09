@@ -1,23 +1,19 @@
 #!/bin/bash
 
-left=~/.config/conky/conky_left.conf
-right=~/.config/conky/right_side.conf
+left=~/.config/conky/sides/conky_left.conf
+right=~/.config/conky/sides/right_side.conf
+clock_calendar=~/.config/conky/clock_calendar/clock_calendar.conf
+weather=~/.config/conky/weather/weather.conf
 
 cd $(dirname $0)
-killall conky 2>/dev/null
-
-if [ "$1" = "-n" ] 
-then
-    pause_flag=""
-else
-    pause_flag="--pause=3"
-    echo "Conky waiting 3 seconds to start..."
-fi
+killall conky
 
 if [[ -e $left ]] 
 then
-    conky --daemonize --quiet "$pause_flag" --config=$left
-    conky --daemonize --quiet "$pause_flag" --config=$right
+    conky --daemonize --quiet --config=$left
+    conky --daemonize --quiet --config=$right
+    conky --daemonize --quiet --config=$clock_calendar
+    conky --daemonize --quiet --config=$weather
     echo "conky was started successfull!"
 else 
     echo "conky was not started..."
