@@ -1,4 +1,4 @@
-# myConkyi
+# myConky
 ### There are 5 widgets:
   1. Left side (system and network information)
   2. Right side (machine information)
